@@ -39,3 +39,63 @@
         return "Hello, " + name;
     }
 */
+
+/*
+ a = [ 10, 2 ]
+
+ a[ 0 ], a[ 0 ]
+ a[ 0 ], a[ 1 ] 
+ a[ 1 ], a[ 0 ] 
+ a[ 1 ], a[ 1 ] 
+
+ a = [ 10, 2, 3 ]
+
+ [ 10, 2 ]
+ a[ 0 ], a[ 0 ] = 1010
+ a[ 0 ], a[ 1 ]  = 102
+ a[ 1 ], a[ 0 ]  = 210
+ a[ 1 ], a[ 1 ]  = 22
+
+ [ 2, 3 ]
+ a[ 1 ], a[ 1 ] = 22
+ a[ 1 ], a[ 2 ] = 23
+ a [ 2 ], a[ 1 ] = 32
+ a[ 2 ], a[ 2 ] = 33
+
+Algorithm
+--------------
+Set up a sliding window with two pointers
+Iterate through the array, adding each concatention from the two pointers into the sum.
+return the sum
+*/
+
+
+const concatentaionsSum = ( arr ) => {
+    if ( arr.length < 2 ) return Number( String( arr[ 0 ] ).concat( String( arr[ 0 ] ) ) );
+    let sum = 0;
+    for ( let i = 0; i < arr.length-1; i ++ ) {
+        sum += Number( String( arr[ i ] ).concat( String( arr[ i ] ) ) );
+        sum += Number( String( arr[ i ] ).concat( String( arr[ i+1 ] ) ) );
+        sum += Number( String( arr[ i+1 ] ).concat( String( arr[ i ] ) ) );
+        sum += Number( String( arr[ i+1 ] ).concat( String( arr[ i+1 ] ) ) );
+    }
+    return sum;
+}
+
+let a = [10,2,3];  
+console.log( concatentaionsSum( a ) ) ;
+
+/*
+Test Cases
+-----------
+let a = [10, 2];    --> 1344
+let a = [10,2,3];   --> 1454
+let a = [ 10 ];     --> 1010;
+
+
+Big O
+--------
+Our algo is O( n ) since we only iterate through the array once at most. 
+Space complexoty is constant since we only use one variable. 
+
+*/
