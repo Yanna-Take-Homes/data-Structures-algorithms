@@ -83,29 +83,25 @@ function mutateTheArray( n, a ) {
     return b;
 }
 n = 5;
-a = [];
+a = [4, 0, 1, -2, 3];
 console.log( mutateTheArray( n, a ) )
 
 /*
     Test Cases
     -----------------
-    [1, 4, 5, 6, 3] --> false
-    [1, 3, 5, 6, 4, 2] --> true
-    [1, 4, 5, 5, 6, 3] --> false;
-    [1] --> true;
+    For n = 5 and a = [4, 0, 1, -2, 3], the output should be mutateTheArray(n, a) = [4, 5, -1, 2, 1].
 */
 
 /*
     Big O
     -----------
     Our time complexity is O( n ) algorithm, since we use a for-loop to iterate through the input array. 
-    Our space complexity is O( 1 ), since our function will always use 4 (static-sized) temporary variables. 
-
+    Our space complexity is O( n ), since our input creates/returns a new array with length n. 
 */
 
 /*
     Questions/Thoughts
     -----------------------
-    Is turning an array into a set a O( n ) operation?
+    ...
 */
 
