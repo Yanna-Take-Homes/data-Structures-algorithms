@@ -87,25 +87,20 @@ if the sliding window from both arrays features the same elements
 
 
 
-let [ s, t ] = [ "super", "tower" ];
+let [ s, t ] = [ "supersd", "towerf" ];
 console.log( merge( s, t ) );
 
 function merge( str1, str2 ) {
     let arr = [ ...str1, ...str2 ];
-    let secStart = str1.length;
     let firstStart = 0; 
+    let secStart = str1.length;
     let mergedStr = '';
-    arr
 
     let stopCondition;
-    if ( arr.length % 2 == 0 ) stopCondition = Math.floor( arr.length/2 );
-    else stopCondition = Math.floor( arr.length/2 )+1;
+    if ( str1.length > str2.length ) stopCondition = str1.length;
+    else stopCondition = str2.length;
 
     for ( let i = 0; i < stopCondition; i++ ) {
-        let char = arr[ firstStart ];
-        let char1 = arr [ secStart ];
-        char
-        char1
         let afterIdx1 = firstStart+1;
         let afterIdx2 = secStart+1;;
 
@@ -144,9 +139,7 @@ function merge( str1, str2 ) {
             }
         } else if ( arr[ firstStart ] == undefined || arr[ secStart ] == undefined ) {
             ( arr[ firstStart ] == undefined ) ? mergedStr += arr[ secStart ] : mergedStr += arr[ firstStart ];
-        } else {
-            char
-        }
+        } 
         secStart ++;
         firstStart++;
     }
