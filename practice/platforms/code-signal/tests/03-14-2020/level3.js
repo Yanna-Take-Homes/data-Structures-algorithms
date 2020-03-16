@@ -66,6 +66,132 @@ Given two strings s and t, merge them together as follows
 - if the nth character in s occurs within s, more times than the nth character in t occurs within t, then place s[ n ] before t[ n ]
 - if they both occur the same amount of times in their respective strings, then compare their ASCII/alphanetic placement value and place the largest first 
 - if both number of occurences and characters are equal, place the character from the first string first.
+
+
+Algorithm
+-------------
+split the strings into two arrays
+iterate through the longer array
+if the current element from the longer array is unique
+    if it is also larger than the other character (from the shorter array)
+        place that character first, and the other second
+    if it is smaller than the other character
+        place the second character first, and the other second
+if the current element is not unique, 
+    if the other character is unique, place that one first and the other second
+    if both characters aren't unique, place the character with the least amount of occurences first
+if the sliding window from both arrays features the same elements
+    place one of them in-between the other
+
 */
+
+
+
+let [ s, t ] = [ "super", "tower" ];
+console.log( merge( s, t ) );
+
+function merge( str1, str2 ) {
+    let arr = [ ...str1, ...str2 ];
+    let secStart = str1.length;
+    let firstStart = 0; 
+    let mergedStr = '';
+    arr
+
+    let stopCondition;
+    if ( arr.length % 2 == 0 ) stopCondition = Math.floor( arr.length/2 );
+    else stopCondition = Math.floor( arr.length/2 )+1;
+
+    for ( let i = 0; i < stopCondition; i++ ) {
+        let char = arr[ firstStart ];
+        let char1 = arr [ secStart ];
+        char
+        char1
+        let afterIdx1 = firstStart+1;
+        let afterIdx2 = secStart+1;;
+
+        /* Function that performs a merge when characters at different strings are equal */
+        let helper = () => {
+            let dups = '';
+            let idx1 = afterIdx1;
+            let idx2 = afterIdx2;
+            ( arr[ firstStart ] < arr[ secStart ] ) ? mergedStr += arr[ firstStart ] : mergedStr += arr[ secStart ];
+            while ( arr[ idx1 ] == arr[ idx2 ] ) {
+                dups += arr[ idx1 ];
+                idx1++;
+                idx2++;
+            }
+            mergedStr += dups; 
+            ( arr[ firstStart ] < arr[ secStart ] ) ? mergedStr += arr[ secStart ] : mergedStr += arr[ firstStart ];
+            mergedStr += dups;
+            return mergedStr;
+        } 
+        
+        /* If there are no duplicates in either respective array */
+        if ( arr[ firstStart ] < arr[ secStart ] ) { 
+            if ( arr[ afterIdx1 ] == arr[ afterIdx2 ] ) {
+                helper();
+            } else {
+                mergedStr += arr[ firstStart ];
+                mergedStr += arr[ secStart ]
+            }
+        } 
+        else if ( arr[ firstStart ] > arr[ secStart] ) {
+            if ( arr[ afterIdx1 ] == arr[ afterIdx2 ] ) {
+                helper();
+            } else {
+                mergedStr += arr[ secStart ];
+                mergedStr += arr[ firstStart ];
+            }
+        } else if ( arr[ firstStart ] == undefined || arr[ secStart ] == undefined ) {
+            ( arr[ firstStart ] == undefined ) ? mergedStr += arr[ secStart ] : mergedStr += arr[ firstStart ];
+        } else {
+            char
+        }
+        secStart ++;
+        firstStart++;
+    }
+    console.log( mergedStr.length, arr.length );
+    return mergedStr;
+}
+
+
+
+/*
+
+        if ( ( new Set( [ ...str1 ] ).size + new Set( [ ...str2 ] ).size ) == arr.length ) {
+
+
+Test cases
+------------
+For s1 = "dce" and s2 = "cccbd", the output should be mergeStrings(s1, s2) = "dcecccbd".
+All symbols from s1 goes first, because all of them have only 1 occurrence in s1 and c has 3 occurrences in s2.
+
+For s1 = "super" and s2 = "tower", the output should be mergeStrings(s1, s2) = "stouperwer".
+
+*/
+
+/*
+
+s u p e r   t o w e r 
+
+s   t
+
+su  to
+u o
+
+sup tow
+p w
+
+supe towe
+e e 
+
+super tower
+r r 
+
+[ s ]
+*/
+
+// [ 's', 'u', 'per' ] , [ 't', 'o', 'wer'  ]
+
 
 
