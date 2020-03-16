@@ -87,7 +87,7 @@ if the sliding window from both arrays features the same elements
 
 
 
-let [ s, t ] = [ "supersd", "towerf" ];
+let [ s, t ] = [ "ss", "kf" ];
 console.log( merge( s, t ) );
 
 function merge( str1, str2 ) {
@@ -99,6 +99,8 @@ function merge( str1, str2 ) {
     let stopCondition;
     if ( str1.length > str2.length ) stopCondition = str1.length;
     else stopCondition = str2.length;
+
+    stopCondition
 
     for ( let i = 0; i < stopCondition; i++ ) {
         let afterIdx1 = firstStart+1;
@@ -182,6 +184,16 @@ super tower
 r r 
 
 [ s ]
+
+
+
+        if ( str1Obj[ arr[ firstStart ] ] < str2Obj[ arr[ secStart ] ] ) {
+            mergedStr += arr[ firstStart ];
+            mergedStr += arr[ secStart ];
+        } else if ( str1Obj[ arr[ firstStart ] ] > str2Obj[ arr[ secStart ] ] ) {
+            mergedStr += arr[ secStart ];
+            mergedStr += arr[ firstStart ];
+        }
 */
 
 // [ 's', 'u', 'per' ] , [ 't', 'o', 'wer'  ]
